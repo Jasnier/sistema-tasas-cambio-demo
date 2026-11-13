@@ -1,0 +1,61 @@
+# Integración continua: en cada push / PR
+#  1. Levanta el Postgres de Supabase en el runner y aplica TODAS las migraciones desde cero.
+#  2. Corre las pruebas de base de datos (pgTAP).
+#  3. Pruebas unitarias (node:test), lint y build de Next.js.
+# Las semillas (seed.sql, usuarios demo) solo existen en local y en este runner: nunca se envían a un entorno remoto.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: web
+
+jobs:
+  base-de-datos:
+    name: Migraciones + pgTAP
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - run: npm ci
+      - name: Postgres local con todas las migraciones desde cero
+        run: npx supabase db start
+      - name: Pruebas pgTAP
+        run: npx supabase test db
+      - name: Apagar
+        if: always()
+        run: npx supabase stop --no-backup
+
+  app:
+    name: Unitarias + lint + build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      # Valores locales por defecto de Supabase CLI: el build no se conecta a ninguna base
+      NEXT_PUBLIC_SUPABASE_URL: http://127.0.0.1:54321
+      NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: sb_publishable_ACJWlzQHlZjBrEguHvfOxg_3BJgxAaH
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - run: npm ci
+      - run: npm run test:unit
+      - run: npm run lint
+      - run: npm run build

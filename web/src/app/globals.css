@@ -1,0 +1,213 @@
+@import "tailwindcss";
+
+/*
+ * Sistema de diseño (STW-63). Colores como tokens: las pantallas usan bg-fondo, bg-superficie,
+ * text-tenue, border-borde, bg-primario… y cada tema solo redefine las variables.
+ * Tema: <html data-tema="claro|oscuro">, lo pone un script en app/layout.tsx según la elección del usuario
+ * (Claro / Oscuro / Sistema, guardada en el navegador). Sin JavaScript se sigue al sistema operativo.
+ */
+:root {
+  /* Claro: fondos luminosos, menú lateral claro, azul suave. Los colores de texto cumplen WCAG AA (≥ 4,5:1) */
+  --fondo: #f4f6fa;
+  --superficie: #ffffff;
+  --superficie-2: #f1f4f9;
+  --texto: #131b2a;
+  --tenue: #566176;
+  --borde: #e2e7ef;
+  --borde-fuerte: #cad2de;
+  --primario: #2c5ae0;
+  --primario-hover: #2149c4;
+  --primario-suave: #e8eefe;
+  --primario-texto: #ffffff;
+  --exito: #0a7d56;
+  --exito-suave: #e2f5ec;
+  --aviso: #9a590b;
+  --aviso-suave: #fdf2df;
+  --peligro: #c53434;
+  --peligro-suave: #fdebeb;
+  --info: #0e7291;
+  --info-suave: #e3f3f9;
+  --sobre: #ffffff;           /* texto sobre un fondo sólido de éxito o peligro */
+  --lateral: #ffffff;
+  --lateral-texto: #536076;
+  --lateral-fuerte: #18212f;
+  --lateral-activo: #e8eefe;
+  --lateral-borde: #e2e7ef;
+  /* Elevación: sombras en dos capas, teñidas del azul oscuro del texto (no negro) */
+  --sombra-xs: 0 1px 2px rgb(19 27 42 / 0.05);
+  --sombra-sm: 0 1px 2px rgb(19 27 42 / 0.06), 0 2px 6px -1px rgb(19 27 42 / 0.06);
+  --sombra-md: 0 2px 4px -1px rgb(19 27 42 / 0.06), 0 8px 16px -4px rgb(19 27 42 / 0.1);
+  --sombra-lg: 0 4px 8px -2px rgb(19 27 42 / 0.08), 0 16px 32px -8px rgb(19 27 42 / 0.16);
+  --sombra-2xl: 0 8px 16px -4px rgb(19 27 42 / 0.1), 0 32px 64px -12px rgb(19 27 42 / 0.28);
+  color-scheme: light;
+}
+
+/* Oscuro: tonos suaves, sin negro puro */
+:root[data-tema="oscuro"] {
+  --fondo: #0f131a;
+  --superficie: #171c25;
+  --superficie-2: #1f2631;
+  --texto: #e6eaf0;
+  --tenue: #9aa5b5;
+  --borde: #283140;
+  --borde-fuerte: #384354;
+  --primario: #7396ff;
+  --primario-hover: #8eabff;
+  --primario-suave: #1c2848;
+  --primario-texto: #0c1222;
+  --exito: #43c995;
+  --exito-suave: #132d26;
+  --aviso: #e7ad4b;
+  --aviso-suave: #302617;
+  --peligro: #f27a7a;
+  --peligro-suave: #381d20;
+  --info: #5cc0e0;
+  --info-suave: #122b35;
+  --sobre: #0c1222;
+  --lateral: #131820;
+  --lateral-texto: #a3adbd;
+  --lateral-fuerte: #f1f4f8;
+  --lateral-activo: #202b45;
+  --lateral-borde: #232b38;
+  --sombra-xs: 0 1px 2px rgb(0 0 0 / 0.3);
+  --sombra-sm: 0 1px 2px rgb(0 0 0 / 0.32), 0 2px 6px -1px rgb(0 0 0 / 0.28);
+  --sombra-md: 0 2px 4px -1px rgb(0 0 0 / 0.32), 0 8px 16px -4px rgb(0 0 0 / 0.38);
+  --sombra-lg: 0 4px 8px -2px rgb(0 0 0 / 0.36), 0 16px 32px -8px rgb(0 0 0 / 0.5);
+  --sombra-2xl: 0 8px 16px -4px rgb(0 0 0 / 0.4), 0 32px 64px -12px rgb(0 0 0 / 0.65);
+  color-scheme: dark;
+}
+
+/* Sin JavaScript (o antes de que corra el script): seguir al sistema operativo. Mismos valores que el tema oscuro. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-tema]) {
+    --fondo: #0f131a; --superficie: #171c25; --superficie-2: #1f2631; --texto: #e6eaf0; --tenue: #9aa5b5;
+    --borde: #283140; --borde-fuerte: #384354; --primario: #7396ff; --primario-hover: #8eabff; --primario-suave: #1c2848;
+    --primario-texto: #0c1222; --exito: #43c995; --exito-suave: #132d26; --aviso: #e7ad4b; --aviso-suave: #302617;
+    --peligro: #f27a7a; --peligro-suave: #381d20; --info: #5cc0e0; --info-suave: #122b35; --sobre: #0c1222;
+    --lateral: #131820; --lateral-texto: #a3adbd; --lateral-fuerte: #f1f4f8; --lateral-activo: #202b45; --lateral-borde: #232b38;
+    --sombra-xs: 0 1px 2px rgb(0 0 0 / 0.3);
+    --sombra-sm: 0 1px 2px rgb(0 0 0 / 0.32), 0 2px 6px -1px rgb(0 0 0 / 0.28);
+    --sombra-md: 0 2px 4px -1px rgb(0 0 0 / 0.32), 0 8px 16px -4px rgb(0 0 0 / 0.38);
+    --sombra-lg: 0 4px 8px -2px rgb(0 0 0 / 0.36), 0 16px 32px -8px rgb(0 0 0 / 0.5);
+    --sombra-2xl: 0 8px 16px -4px rgb(0 0 0 / 0.4), 0 32px 64px -12px rgb(0 0 0 / 0.65);
+    color-scheme: dark;
+  }
+}
+
+@theme inline {
+  --color-fondo: var(--fondo);
+  --color-superficie: var(--superficie);
+  --color-superficie-2: var(--superficie-2);
+  --color-texto: var(--texto);
+  --color-tenue: var(--tenue);
+  --color-borde: var(--borde);
+  --color-borde-fuerte: var(--borde-fuerte);
+  --color-primario: var(--primario);
+  --color-primario-hover: var(--primario-hover);
+  --color-primario-suave: var(--primario-suave);
+  --color-primario-texto: var(--primario-texto);
+  --color-exito: var(--exito);
+  --color-exito-suave: var(--exito-suave);
+  --color-aviso: var(--aviso);
+  --color-aviso-suave: var(--aviso-suave);
+  --color-peligro: var(--peligro);
+  --color-peligro-suave: var(--peligro-suave);
+  --color-info: var(--info);
+  --color-info-suave: var(--info-suave);
+  --color-sobre: var(--sobre);
+  --color-lateral: var(--lateral);
+  --color-lateral-texto: var(--lateral-texto);
+  --color-lateral-activo: var(--lateral-activo);
+  --color-lateral-fuerte: var(--lateral-fuerte);
+  --color-lateral-borde: var(--lateral-borde);
+  /* compatibilidad con las clases anteriores */
+  --color-background: var(--fondo);
+  --color-foreground: var(--texto);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  /*
+   * Escala tipográfica para pantallas densas de datos. La raíz es 14 px (ver html abajo), así que
+   * todo lo medido en rem (espacios, anchos, letras) queda ~12 % más compacto. Los tamaños chicos
+   * se suben un poco para que nada quede ilegible: xs 11,4 px · sm 13 px · base 14 px.
+   */
+  --text-xs: 0.8125rem;   --text-xs--line-height: 1.35;
+  --text-sm: 0.9286rem;   --text-sm--line-height: 1.45;
+  --text-base: 1rem;      --text-base--line-height: 1.5;
+  --text-lg: 1.1429rem;   --text-lg--line-height: 1.45;
+  --text-xl: 1.2857rem;   --text-xl--line-height: 1.35;
+  --text-2xl: 1.5714rem;  --text-2xl--line-height: 1.25;
+  --radius-md: 0.5rem;      /* 7 px */
+  --radius-lg: 0.7143rem;   /* 10 px */
+  --radius-xl: 1rem;        /* 14 px */
+  /* Las clases shadow-* de las pantallas toman la elevación del tema */
+  --shadow-xs: var(--sombra-xs);
+  --shadow-sm: var(--sombra-sm);
+  --shadow-md: var(--sombra-md);
+  --shadow-lg: var(--sombra-lg);
+  --shadow-xl: var(--sombra-lg);
+  --shadow-2xl: var(--sombra-2xl);
+  --animate-aparecer: aparecer 0.22s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-brillo: brillo 1.6s linear infinite;
+}
+
+@keyframes aparecer { from { opacity: 0; transform: translateY(4px); } }
+@keyframes brillo { to { background-position: -200% 0; } }
+
+@layer base {
+  /* Densidad: 14 px de base en escritorio; en celular 15 px para que se lea y los campos no hagan zoom */
+  html { font-size: 14px; scrollbar-color: var(--borde-fuerte) transparent; }
+  @media (max-width: 639px) { html { font-size: 15px; } }
+  * { scrollbar-width: thin; }
+  body {
+    transition: background-color 0.15s, color 0.15s;
+    background: var(--fondo);
+    color: var(--texto);
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+  }
+  h1 { letter-spacing: -0.022em; }
+  h2 { letter-spacing: -0.008em; }
+  /* Controles del mismo alto (inputs, listas y botones alineados en una fila de filtros) */
+  input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="range"]),
+  select { min-height: 2.25rem; }
+  input[type="checkbox"], input[type="radio"] { accent-color: var(--primario); }
+  button { cursor: pointer; }
+  button:disabled { cursor: not-allowed; }
+  /* Tablas: encabezado discreto sobre fondo suave, cifras alineadas. Cada pantalla pone su relleno. */
+  table { border-collapse: collapse; }
+  thead tr { background: var(--superficie-2); }
+  thead th {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--tenue);
+    white-space: nowrap;
+  }
+  tbody tr { transition: background-color 0.1s; }
+  tbody tr:hover { background: color-mix(in srgb, var(--primario) 5%, transparent); }
+  tfoot { font-weight: 600; }
+  td { font-variant-numeric: tabular-nums; }
+  :focus-visible { outline: 2px solid var(--primario); outline-offset: 2px; }
+  ::selection { background: color-mix(in srgb, var(--primario) 22%, transparent); }
+  /* Ventanas de confirmación: fondo desenfocado y entrada suave */
+  dialog::backdrop { background: rgb(10 15 25 / 0.5); backdrop-filter: blur(3px); }
+  dialog[open] { animation: var(--animate-aparecer); }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+}
+
+/*
+ * Listas desplegables con la misma flecha en todos los navegadores. Va fuera de las capas a propósito:
+ * así el espacio de la flecha gana a las clases de relleno (px-*) de cada pantalla y el texto no la pisa.
+ */
+select:not([multiple]):not([size]) {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%237b8798' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 8 4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  background-size: 1.1rem;
+  padding-right: 2rem;
+}

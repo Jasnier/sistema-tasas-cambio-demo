@@ -1,0 +1,366 @@
+{
+ "tipo": "EXPORT_CORE",
+ "generado": "2026-11-10T12:00:00.000Z",
+ "libro": "CORE (EJEMPLO INVENTADO)",
+ "zona_horaria": "America/Bogota",
+ "faltantes": [],
+ "hojas": {
+  "MONEDAS": {
+   "nombre_real": "MONEDAS",
+   "filas": [
+    [
+     "ID",
+     "NOMBRE",
+     "SIMBOLO",
+     "ACTIVO",
+     "ORDEN"
+    ],
+    [
+     1,
+     "cop",
+     "$",
+     " TRUE",
+     1
+    ],
+    [
+     2,
+     "USD",
+     "US$",
+     true,
+     2
+    ],
+    [
+     3,
+     "REAL",
+     "R$",
+     "TRUE",
+     3
+    ],
+    [
+     4,
+     "SOL",
+     "S/",
+     "TRUE",
+     4
+    ],
+    [
+     5,
+     "USDT",
+     "",
+     false,
+     5
+    ]
+   ]
+  },
+  "EMPRESAS": {
+   "nombre_real": "EMPRESAS",
+   "filas": [
+    [
+     "ID",
+     "NOMBRE",
+     "NIT",
+     "CIUDAD",
+     "ACTIVO",
+     "ORDEN"
+    ],
+    [
+     "E1",
+     "Empresa Uno",
+     "",
+     "",
+     " TRUE",
+     1
+    ],
+    [
+     "E2",
+     "Empresa Dos",
+     "",
+     "",
+     "FALSE",
+     2
+    ]
+   ]
+  },
+  "RECIBIDO_EN": {
+   "nombre_real": "RECIBIDO_EN",
+   "filas": [
+    [
+     "ID",
+     "NOMBRE",
+     "",
+     "",
+     "",
+     "ACTIVO",
+     "ORDEN"
+    ],
+    [
+     "R1",
+     "Bancolombia",
+     "",
+     "",
+     "",
+     "TRUE",
+     1
+    ],
+    [
+     "R2",
+     "agente  bcp",
+     "",
+     "",
+     "",
+     "TRUE",
+     2
+    ]
+   ]
+  },
+  "CLIENTES_ALIADOS": {
+   "nombre_real": "CLIENTES_ALIADOS",
+   "filas": [
+    [
+     "ID",
+     "TIPO",
+     "NOMBRE",
+     "",
+     "ACTIVO"
+    ],
+    [
+     "CT-70",
+     "ALIADO",
+     "Comnorte",
+     "",
+     "TRUE"
+    ],
+    [
+     "CT-72",
+     "ALIADO",
+     "Lucas Alzate",
+     "",
+     "TRUE"
+    ],
+    [
+     "ct-5",
+     "cliente",
+     "Cliente Cinco",
+     "",
+     "TRUE"
+    ],
+    [
+     "X-9",
+     "CLIENTE",
+     "Mal codigo",
+     "",
+     "TRUE"
+    ],
+    [
+     "CT-8",
+     "PROVEEDOR",
+     "Tipo raro",
+     "",
+     "TRUE"
+    ]
+   ]
+  },
+  "TASAS_CLIENTE": {
+   "nombre_real": "TASAS_CLIENTE",
+   "filas": [
+    [
+     "ID_TASA",
+     "MONEDA_ORIGEN",
+     "MONEDA_DESTINO",
+     "MODALIDA",
+     "VIGENCIA_DESDE",
+     "VIGENCIA_HASTA",
+     "VALOR_TASA",
+     "ESTADO",
+     "fecha_creacion",
+     "usuario"
+    ],
+    [
+     "TB-000001",
+     "USD",
+     "COP",
+     "EFECTIVO",
+     46327,
+     46341.99998842593,
+     4100,
+     "CERRADO",
+     46326,
+     "x@x"
+    ],
+    [
+     "TB-000002",
+     "USD",
+     "COP",
+     "EFECTIVO",
+     46342,
+     46387.99998842593,
+     4150,
+     "CERRADO",
+     46341,
+     "x@x"
+    ],
+    [
+     "TB-000003",
+     "USD",
+     "COP",
+     "EFECTIVO",
+     46357,
+     46418,
+     4200,
+     "CERRADO",
+     46356,
+     "x@x"
+    ],
+    [
+     "TB-000004",
+     "REAL",
+     "COP",
+     "CHEQUE",
+     46327,
+     46357,
+     800,
+     "CERRADO",
+     46326,
+     "x@x"
+    ],
+    [
+     "TB-000005",
+     "EUR",
+     "COP",
+     "EFECTIVO",
+     46327,
+     46357,
+     4500,
+     "CERRADO",
+     46326,
+     "x@x"
+    ],
+    [
+     "TB-000006",
+     "SOL",
+     "COP",
+     "TRANSFERENCIA",
+     46327,
+     46357,
+     1100,
+     "MODIFICABLE",
+     46326,
+     "x@x"
+    ],
+    [
+     "TB-000007",
+     "COP",
+     "COP",
+     "EFECTIVO",
+     46023,
+     46388,
+     0.5,
+     "CERRADO",
+     46022,
+     "x@x"
+    ]
+   ]
+  },
+  "UTILIDAD": {
+   "nombre_real": "UTILIDAD",
+   "filas": [
+    [
+     "ID UTILIDAD",
+     "MONEDA_ORIGEN",
+     "MONEDA_DESTINO",
+     "EFECTIVO",
+     "TRANSFERENCIA",
+     "VIGENCIA DESDE",
+     "VIGENCIA HASTA"
+    ],
+    [
+     "U-1",
+     "USD",
+     "COP",
+     30,
+     20,
+     46023,
+     46387.99998842593
+    ],
+    [
+     "U-2",
+     "USD",
+     "COP",
+     35,
+     25,
+     46174,
+     46388
+    ],
+    [
+     "U-3",
+     "SOL",
+     "COP",
+     10,
+     "",
+     46023,
+     46388
+    ]
+   ]
+  },
+  "AJUSTES_CLIENTES": {
+   "nombre_real": "AJUSTES_CLIENTES",
+   "filas": [
+    [
+     "id_ajuste",
+     "estado",
+     "id_contraparte",
+     "modalidad",
+     "",
+     "moneda_origen",
+     "moneda_destino",
+     "",
+     "beneficio"
+    ],
+    [
+     "A-1",
+     "ACTIVO",
+     "CT-72",
+     "",
+     "",
+     "SOL",
+     "COP",
+     "",
+     10
+    ],
+    [
+     "A-2",
+     "activo",
+     "CT-72",
+     "",
+     "",
+     "SOL",
+     "COP",
+     "",
+     12
+    ],
+    [
+     "A-3",
+     "INACTIVO",
+     "CT-70",
+     "",
+     "",
+     "USD",
+     "COP",
+     "",
+     5
+    ],
+    [
+     "A-4",
+     "ACTIVO",
+     "CT-999",
+     "",
+     "",
+     "USD",
+     "COP",
+     "",
+     5
+    ]
+   ]
+  }
+ }
+}

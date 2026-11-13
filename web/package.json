@@ -1,0 +1,46 @@
+{
+  "name": "web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "db:start": "supabase start",
+    "db:stop": "supabase stop",
+    "db:reset": "supabase db reset",
+    "db:test": "supabase test db",
+    "db:push:staging": "node scripts/db-push.mjs staging",
+    "db:push:prod": "node scripts/db-push.mjs prod",
+    "smoke": "node scripts/smoke.mjs",
+    "e2e": "node scripts/e2e-tasas.mjs",
+    "e2e:brasil": "node scripts/e2e-brasil.mjs",
+    "e2e:tiempo-real": "node scripts/e2e-tiempo-real.mjs",
+    "test:unit": "node --test scripts/numeros.test.mjs scripts/paginar.test.mjs scripts/csv.test.mjs",
+    "oro": "node scripts/pruebas-oro.mjs",
+    "importar:historial": "node scripts/importar-historial.mjs",
+    "conciliar": "node scripts/conciliar-saldos.mjs",
+    "ensayo:migracion": "bash scripts/ensayo-migracion.sh",
+    "importar:brasil": "node scripts/importar-brasil.mjs",
+    "csv:json": "node scripts/csv-a-json.mjs"
+  },
+  "dependencies": {
+    "@supabase/ssr": "^0.12.7",
+    "@supabase/supabase-js": "^2.119.0",
+    "next": "16.4.6",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/turbopack": "4.3.3",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.6",
+    "supabase": "^3.1.0",
+    "tailwindcss": "4.3.3",
+    "typescript": "^5"
+  }
+}
