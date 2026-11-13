@@ -316,17 +316,43 @@ En este repositorio los archivos de `scripts/fixtures/` son **ejemplos inventado
     └── scripts/                    # Importadores, pruebas de oro, conciliación, smoke, e2e, despliegue de migraciones
 ```
 
-## ▶️ Correrlo en local
+## ▶️ Descargar y correrlo en local
 
-**Requisitos:** Node 20+ y Docker Desktop encendido.
+Todo corre en tu computador: la base de datos (Supabase) se levanta en Docker con los datos demo ya cargados. No
+necesitas cuentas ni claves de ningún servicio.
+
+### 1. Requisitos
+
+| Programa | Versión | Descarga |
+|---|---|---|
+| Git | cualquiera reciente | https://git-scm.com/downloads |
+| Node.js | 20 o superior | https://nodejs.org |
+| Docker Desktop | encendido antes de empezar | https://www.docker.com/products/docker-desktop |
+
+### 2. Descargar
 
 ```bash
-cd web
-npm install
-npm run db:start                 # Supabase local en Docker: aplica las migraciones y carga los datos demo
-cp .env.example .env.local       # pega la PUBLISHABLE_KEY que muestra `npx supabase status`
-npm run dev                      # http://localhost:3000
+git clone https://github.com/Jasnier/sistema-tasas-cambio-demo.git
+cd sistema-tasas-cambio-demo/web
 ```
+
+(O sin Git: botón verde **Code → Download ZIP**, descomprimir y abrir una terminal en la carpeta `web`.)
+
+### 3. Instalar y arrancar
+
+```bash
+npm install                      # dependencias (1–2 min)
+npm run db:start                 # Supabase en Docker: crea la base, aplica las 30 migraciones y carga los datos demo
+                                 # (la primera vez descarga las imágenes de Docker: puede tardar varios minutos)
+cp .env.example .env.local       # en Windows (PowerShell): copy .env.example .env.local
+npm run dev
+```
+
+Abrir **http://localhost:3000** e iniciar sesión con cualquiera de los usuarios demo de abajo.
+
+> Si `npx supabase status` muestra una `PUBLISHABLE_KEY` distinta a la de `.env.local`, cópiala ahí y reinicia `npm run dev`.
+>
+> Para apagar todo: `Ctrl + C` en la terminal de la app y luego `npm run db:stop`.
 
 **Usuarios demo** (contraseña `Local123!` para todos):
 

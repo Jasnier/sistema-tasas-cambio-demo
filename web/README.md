@@ -10,7 +10,7 @@ Requisitos: Node 20+ y Docker Desktop encendido.
 ```bash
 npm install
 npm run db:start                 # Supabase local en Docker (la primera vez descarga imágenes)
-cp .env.example .env.local       # pega la PUBLISHABLE_KEY que muestra `npx supabase status`
+cp .env.example .env.local       # ya trae la clave por defecto del Supabase local
 npm run dev                      # http://localhost:3000
 ```
 
