@@ -49,7 +49,8 @@ with what the spreadsheets stored. Covered by **pgTAP** database tests, unit tes
 13. [Calidad y pruebas](#-calidad-y-pruebas)
 14. [Cómo se trabajó](#-cómo-se-trabajó)
 15. [Estructura del repositorio](#-estructura-del-repositorio)
-16. [Correrlo en local](#-correrlo-en-local)
+16. [Descargar y correrlo en local](#️-descargar-y-correrlo-en-local)
+17. [Llaves, costos y tu propio Supabase](#-llaves-costos-y-tu-propio-supabase)
 
 ---
 
