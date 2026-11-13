@@ -378,6 +378,63 @@ npm run smoke -- http://localhost:3100
 
 Supabase Studio local: http://127.0.0.1:54323
 
+## 🔑 Llaves, costos y tu propio Supabase
+
+**Este repositorio no trae llaves de ningún servicio en la nube** ni está conectado a ningún proyecto de Supabase,
+Vercel u otro proveedor. La única clave que aparece (`.env.example`) es la **clave por defecto del Supabase local**:
+la genera la CLI de Supabase en tu computador, es igual para todo el mundo y no sirve para nada fuera de tu máquina.
+Correrlo en local **no cuesta nada** y no crea cuentas en ningún lado.
+
+### Opción A — Solo probarlo (recomendado)
+
+Sigue [Descargar y correrlo en local](#️-descargar-y-correrlo-en-local). Todo vive en Docker en tu computador.
+
+### Opción B — Tu propio proyecto de Supabase en la nube (opcional)
+
+Si quieres verlo en línea, cada persona crea **su propio** proyecto (el plan gratuito alcanza para la demo):
+
+1. Crea una cuenta en https://supabase.com y un proyecto nuevo. Guarda la contraseña de la base.
+2. En la carpeta `web`, conecta la CLI a tu proyecto y crea la base:
+
+   ```bash
+   npx supabase login
+   npx supabase link --project-ref <ref-de-tu-proyecto>   # el ref está en la URL del Dashboard
+   npx supabase db push                                    # aplica las 30 migraciones
+   ```
+
+3. **Datos demo (opcional):** `npx supabase db reset --linked` borra tu base remota y la recrea con migraciones +
+   `supabase/seed.sql`. Ojo: las semillas crean los usuarios demo con la contraseña pública `Local123!`; úsalo solo en un
+   proyecto de prueba, nunca con datos reales. Sin semillas, crea el primer usuario como explica
+   [docs/DESPLIEGUE.md](docs/DESPLIEGUE.md#4-primer-usuario).
+4. En `web/.env.local` pon la URL y la *Publishable key* de **tu** proyecto (Dashboard → Project Settings → API Keys):
+
+   ```
+   NEXT_PUBLIC_SUPABASE_URL=https://<ref-de-tu-proyecto>.supabase.co
+   NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sb_publishable_...
+   ```
+
+5. `npm run dev`, o publícalo en Vercel con *Root Directory* = `web` y esas dos variables.
+
+Las llaves de **tu** proyecto son tuyas: no las subas a git (`.env.local` ya está en `.gitignore`) y nunca uses la
+*secret key* / `service_role` en el navegador. Configuración recomendada del proyecto: [docs/DESPLIEGUE.md](docs/DESPLIEGUE.md).
+
+### Prompt para tu asistente de IA
+
+¿Prefieres que un asistente (Claude, Copilot, ChatGPT…) te guíe? Abre la carpeta del proyecto con él y pega esto:
+
+```text
+Quiero correr el proyecto "sistema-tasas-cambio-demo" (Next.js 16 + Supabase) que está en esta carpeta.
+Lee README.md y web/README.md antes de empezar. Guíame paso a paso y verifica cada paso antes de seguir:
+1. Revisa que tenga instalados Node 20+, Git y Docker Desktop (encendido); si falta algo, dime cómo instalarlo
+   en mi sistema operativo.
+2. En la carpeta web: npm install, npm run db:start, copia .env.example a .env.local y corre npm run dev.
+3. Si npx supabase status muestra una PUBLISHABLE_KEY distinta a la de .env.local, actualízala.
+4. Confirma que abre http://localhost:3000 e inicia sesión con admin@tasas.local / Local123!.
+[Solo si te lo pido] Ayúdame a crear MI PROPIO proyecto en supabase.com y a conectarlo siguiendo la sección
+"Opción B" del README. No uses llaves de nadie más, no subas mi .env.local a git y no apliques las semillas
+(seed.sql) a un proyecto con datos reales.
+```
+
 ---
 
 ## 👤 Autor
